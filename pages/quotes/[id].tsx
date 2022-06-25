@@ -1,18 +1,11 @@
-import Image from "next/image";
+import Image from "../../components/image";
 import NextLink from "next/link";
 import { Quote } from "../api/quotes";
 
-function Blog({ post }: { post: Quote }) {
+function Card({ post }: { post: Quote }) {
   return (
     <div className="flex items-center justify-center h-screen">
       <div className="card w-96 glass pt-5">
-        <figure>
-          <img
-            src="https://picsum.photos/300/200"
-            alt="Image"
-            className="rounded-xl shadow-lg"
-          />
-        </figure>
         <div className="card-body">
           <h2 className="card-title">{post.author}</h2>
           <p>{post.text}</p>
@@ -29,7 +22,11 @@ function Blog({ post }: { post: Quote }) {
   );
 }
 
-export async function getStaticProps({ params: { id } }) {
+export async function getStaticProps({
+  params: { id },
+}: {
+  params: { id: number };
+}) {
   const res = await fetch("http://localhost:3000/api/quotes");
   const posts: Quote[] = await res.json();
   //   posts[0] = { ...posts[0], ctx };
@@ -64,4 +61,4 @@ export async function getStaticPaths() {
   return { paths, fallback: "blocking" };
 }
 
-export default Blog;
+export default Card;

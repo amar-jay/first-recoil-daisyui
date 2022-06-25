@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from '../components/image';
 import { useRecoilState, useRecoilValue } from "recoil";
 import { displayTodosState, todoListState } from "../pages/atom";
 export default function TodoTable() {
@@ -37,7 +38,7 @@ export default function TodoTable() {
     );
   };
   return (
-    <div className="flex justify-center items-center flex-col py-5 w-full">
+    <div className="relative flex justify-center items-center flex-col py-5 w-full">
       <div className="bg-base-200 flex flex-col mb-5 rounded-lg shadow-lg">
         <input
           className="input input-primary w-72 m-7 rounded-md"
@@ -84,13 +85,13 @@ export default function TodoTable() {
                 <div className="flex items-center space-x-3">
                   <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
-                      <img src="/favicon.ico" alt="Icon" />
+                      <Image src="/favicon.ico" className="rounded-md h-12 w-12"/>
                     </div>
                   </div>
                   <div className="font-bold">{todo.name}</div>
                 </div>
               </td>
-              <td>{todo.todo}</td>
+              <td className="whitespace-pre-wrap">{todo.todo}</td>
               <td>
                 <button
                   onClick={(e) => setCompleted(todo)}

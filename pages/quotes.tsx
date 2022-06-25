@@ -1,5 +1,5 @@
 import { Quote } from "./api/quotes";
-
+import NextLink from 'next/link'
 function Blog({ posts }: { posts: Quote[] }) {
   return (
     <div className="flex flex-col items-center justify-center py-10">
@@ -12,12 +12,15 @@ function Blog({ posts }: { posts: Quote[] }) {
           </tr>
         </thead>
         <tbody>
-          {posts.map((post) => (
-            <tr key={post.id}>
+          {posts.map((post: Quote) => (
+            <tr key={post.id} className="cursor-pointer">
+            <NextLink href={`/quotes/${post.id - 1 }`}>
               <th>{post.id}</th>
               <td className="whitespace-pre-wrap">{post.text}</td>
               <td>{post.author}</td>
-            </tr>
+                        </NextLink>
+                        </tr>
+
           ))}
         </tbody>
       </table>
@@ -48,7 +51,7 @@ export async function getStaticProps() {
 // the path has not been generated.
 async function getStaticPaths() {
   const res = await fetch("http://localhost:3000/api/quotes");
-  const posts = await res.json();
+  const posts: Quote[] = await res.json();
 
   // Get the paths we want to pre-render based on posts
   const paths = posts.map((post) => ({

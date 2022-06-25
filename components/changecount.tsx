@@ -1,8 +1,7 @@
-import { useRef } from "react";
-import { SetterOrUpdater, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 // import styles from "../styles/Home.module.css";
 import { countState } from "../pages/atom";
-const changeCount: React.FC<{}> = () => {
+const ChangeCount: React.FC<{}> = () => {
   const [count, setCount] = useRecoilState(countState);
   return (
     <>
@@ -23,4 +22,4 @@ const changeCount: React.FC<{}> = () => {
   );
 };
 
-export default changeCount;
+export default ChangeCount;
