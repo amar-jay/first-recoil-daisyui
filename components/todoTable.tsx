@@ -38,7 +38,7 @@ export default function TodoTable() {
     );
   };
   return (
-    <div className="relative flex justify-center items-center flex-col py-5 w-full">
+    <div className="relative flex justify-center items-center flex-col py-5 max-w-full">
       <div className="bg-base-200 flex flex-col mb-5 rounded-lg shadow-lg">
         <input
           className="input input-primary w-72 m-7 rounded-md"
@@ -59,63 +59,65 @@ export default function TodoTable() {
           Add Todo
         </button>
       </div>
-      <table className="table w-1/2">
-        <thead>
-          <tr>
-            <th>CheckBox</th>
-            <th>Todo</th>
-            <th>Name</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody className="shadow-2xl">
-          {displaytodos.map((todo) => (
-            <tr key={todo.id}>
-              <th>
-                <label>
-                  <input
-                    type="checkbox"
-                    className="checkbox"
-                    // value={todo.completed} onChange={}
-                  />
-                </label>
-              </th>
-              <td>
-                <div className="flex items-center space-x-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <Image
-                        src="/favicon.ico"
-                        className="rounded-md h-12 w-12"
-                        alt="icon"
-                      />
-                    </div>
-                  </div>
-                  <div className="font-bold">{todo.name}</div>
-                </div>
-              </td>
-              <td className="whitespace-pre-wrap">{todo.todo}</td>
-              <td>
-                <button
-                  onClick={(e) => setCompleted(todo)}
-                  className="btn btn-secondary rounded-md"
-                >
-                  {todo.completed ? "Completed" : "Not Completed"}
-                </button>
-              </td>
-              <td>
-                <button
-                  onClick={(e) => setDelete(todo)}
-                  className="btn btn-warning rounded-md"
-                >
-                  Delete
-                </button>
-              </td>
+      <div className="h-[23vh] px-7 overflow-y-auto">
+        <table className="table table-auto overflow-scroll w-full h-full">
+          <thead>
+            <tr>
+              <th>CheckBox</th>
+              <th>Todo</th>
+              <th>Name</th>
+              <th></th>
+              <th></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="shadow-2xl">
+            {displaytodos.map((todo) => (
+              <tr key={todo.id}>
+                <th>
+                  <label>
+                    <input
+                      type="checkbox"
+                      className="checkbox"
+                      // value={todo.completed} onChange={}
+                    />
+                  </label>
+                </th>
+                <td>
+                  <div className="flex items-center space-x-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
+                        <Image
+                          src="/favicon.ico"
+                          className="rounded-md h-12 w-12"
+                          alt="icon"
+                        />
+                      </div>
+                    </div>
+                    <div className="font-bold">{todo.name}</div>
+                  </div>
+                </td>
+                <td className="whitespace-pre-wrap">{todo.todo}</td>
+                <td>
+                  <button
+                    onClick={(e) => setCompleted(todo)}
+                    className="btn btn-secondary rounded-md"
+                  >
+                    {todo.completed ? "Completed" : "Not Completed"}
+                  </button>
+                </td>
+                <td>
+                  <button
+                    onClick={(e) => setDelete(todo)}
+                    className="btn btn-warning rounded-md"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

@@ -16,7 +16,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="card-body w-full">
+      <main className="h-[90vh] p-6 flex flex-col">
         <NavBar title={"Counter"} />
         <Heading>Recoil & Daisy ui Template ✔️</Heading>
         <h1 className=" text-center font-mono text-6xl">{count}</h1>
@@ -24,13 +24,13 @@ const Home: NextPage = () => {
         <div className="flex-row self-center justify-center items-center menu p-3 shadow bg-base-200 rounded-box w-1/3">
           <button
             className="btn btn-primary m-4 w-24"
-            onClick={(_) => setCount((count) => count++)}
+            onClick={(_) => setCount(count + 1)}
           >
             Increase
           </button>
           <button
             className="btn btn-success w-24 m-4"
-            onClick={(_) => setCount((count) => count--)}
+            onClick={(_) => setCount(count - 1)}
           >
             Decrease
           </button>
@@ -39,6 +39,9 @@ const Home: NextPage = () => {
         <Input />
       </main>
       {/* Learn to write Footers */}
+      <footer className="footer footer-center h-[10vh] p-0 bg-primary text-primary-content border-t-2 border-secondary">
+        <p className="font-bold text-5xl">Footer💩</p>
+      </footer>
     </div>
   );
 };
