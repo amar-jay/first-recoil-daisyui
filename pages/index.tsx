@@ -24,13 +24,13 @@ const Home: NextPage = () => {
         <div className="flex-row self-center justify-center items-center menu p-3 shadow bg-base-200 rounded-box w-1/3">
           <button
             className="btn btn-primary m-4 w-24"
-            // onClick={(_) => setCount((count) => count++)}
+            onClick={(_) => setCount((count) => count++)}
           >
             Increase
           </button>
           <button
             className="btn btn-success w-24 m-4"
-            // onClick={(_) => setCount((count) => count--)}
+            onClick={(_) => setCount((count) => count--)}
           >
             Decrease
           </button>

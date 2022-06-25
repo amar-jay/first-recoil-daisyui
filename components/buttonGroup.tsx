@@ -3,7 +3,7 @@ import { selectedState } from "./atom";
 const ButtonGroup: React.FC = () => {
   const [selected, setSelected] = useRecoilState(selectedState);
   return (
-    <div className="btn-group self-center pt-6">
+    <div className="btn-group self-center p-6">
       <button
         className={`btn ${selected === "Show All" ? "btn-active" : ""}`}
         onClick={(_) => setSelected("Show All")}

@@ -1,9 +1,10 @@
+import NextLink from "next/link";
 const NavBar: React.FC<{ title: string }> = ({ title }) => {
   return (
     <div className="navbar bg-base-200 rounded-box">
       <div className="navbar-start">
         <div className="dropdown">
-          <label className="btn btn-ghost btn-circle">
+          <label tabIndex={0} className="btn btn-ghost btn-circle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -19,9 +20,34 @@ const NavBar: React.FC<{ title: string }> = ({ title }) => {
               />
             </svg>
           </label>
-          <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+          {/* <div class="dropdown">
+            <label tabindex="0" class="btn m-1">
+              Click
+            </label>
+            <ul
+              tabindex="0"
+              class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a>Item 1</a>
+              </li>
+              <li>
+                <a>Item 2</a>
+              </li>
+            </ul>
+          </div> */}
+          <ul
+            tabIndex={0}
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+          >
             <li>
-              <a>FooBar</a>
+              <NextLink href="/todolist">Todolist</NextLink>
+            </li>
+            <li>
+              <NextLink href="/">Counter</NextLink>
+            </li>
+            <li>
+              <NextLink href="/quotes">Quotes</NextLink>
             </li>
           </ul>
         </div>

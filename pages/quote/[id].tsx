@@ -12,9 +12,7 @@ function Card({ post }: { post: Quote }) {
           <p>{post.text}</p>
           <div className="card-actions justify-end">
             <button className="btn btn-primary">
-              <NextLink href={"/quotes"} passHref>
-                See Other Quotes
-              </NextLink>
+              <NextLink href={"/quotes"}>Other Quotes</NextLink>
             </button>
           </div>
         </div>
