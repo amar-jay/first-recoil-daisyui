@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { selectedState } from "../pages/atom";
+import { selectedState } from "./atom";
 const ButtonGroup: React.FC = () => {
   const [selected, setSelected] = useRecoilState(selectedState);
   return (

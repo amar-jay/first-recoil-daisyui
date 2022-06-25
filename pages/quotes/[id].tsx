@@ -22,19 +22,14 @@ function Card({ post }: { post: Quote }) {
   );
 }
 
-export async function getStaticProps({
-  params: { id },
-}: {
-  params: { id: number };
-}) {
-  const res = await fetch("http://localhost:3000/api/quotes");
-  const posts: Quote[] = await res.json();
-  //   posts[0] = { ...posts[0], ctx };
+export async function getStaticProps({ params }: { params: { id: number } }) {
+  const posts = await fetchData();
   if (!posts) {
     return {
       notFound: true,
     };
   }
+  const id = params.id;
 
   return {
     props: {
@@ -42,16 +37,13 @@ export async function getStaticProps({
       post: posts[id],
     },
     //ISG in secs
-    // revalidate: 15,
+    // revalidate: 100,
   };
 }
 
 export async function getStaticPaths() {
-  const res = await fetch("http://localhost:3000/api/quotes");
-  let posts: Quote[] = await res.json();
-  posts = posts.slice(0, 5);
-  // Get the paths we want to pre-render based on posts
-  const paths = posts.map((post) => ({
+  const posts = await fetchData();
+  const paths = posts.map((post: Quote) => ({
     params: { id: String(post.id) },
   }));
 
@@ -61,4 +53,22 @@ export async function getStaticPaths() {
   return { paths, fallback: "blocking" };
 }
 
+const fetchData = async () => {
+  let datas: Quote[] = await fetch("https://type.fit/api/quotes")
+    .then((res) => res.json())
+    .then((data) => data)
+    .catch((err) => console.log(err));
+
+  let id = 0;
+  const indexedData = datas!.map((data) => {
+    id = id + 1;
+    return {
+      id: id,
+      text: data.text,
+      author: data.author,
+    };
+  });
+
+  return indexedData;
+};
 export default Card;

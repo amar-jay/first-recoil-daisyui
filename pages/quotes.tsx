@@ -13,14 +13,13 @@ function Blog({ posts }: { posts: Quote[] }) {
         </thead>
         <tbody>
           {posts.map((post: Quote) => (
-            <tr key={post.id} className="cursor-pointer">
-            <NextLink href={`/quotes/${post.id - 1 }`}>
+            <NextLink href={`/quotes/${post.id - 1 }`} key={post.id}>
+            <tr className="cursor-pointer">
               <th>{post.id}</th>
               <td className="whitespace-pre-wrap">{post.text}</td>
               <td>{post.author}</td>
-                        </NextLink>
-                        </tr>
-
+            </tr>
+            </NextLink>
           ))}
         </tbody>
       </table>

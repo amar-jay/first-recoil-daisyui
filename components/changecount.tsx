@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 // import styles from "../styles/Home.module.css";
-import { countState } from "../pages/atom";
+import { countState } from "./atom";
 const ChangeCount: React.FC<{}> = () => {
   const [count, setCount] = useRecoilState(countState);
   return (

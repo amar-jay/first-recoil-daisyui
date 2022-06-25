@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Image from '../components/image';
+import Image from "../components/image";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { displayTodosState, todoListState } from "../pages/atom";
+import { displayTodosState, todoListState } from "./atom";
 export default function TodoTable() {
   const [todos, setTodos] = useRecoilState(todoListState);
   const displaytodos = useRecoilValue(displayTodosState);
@@ -85,7 +85,11 @@ export default function TodoTable() {
                 <div className="flex items-center space-x-3">
                   <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
-                      <Image src="/favicon.ico" className="rounded-md h-12 w-12"/>
+                      <Image
+                        src="/favicon.ico"
+                        className="rounded-md h-12 w-12"
+                        alt="icon"
+                      />
                     </div>
                   </div>
                   <div className="font-bold">{todo.name}</div>
