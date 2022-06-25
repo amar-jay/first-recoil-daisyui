@@ -1,5 +1,6 @@
 import Image from "../../components/image";
 import NextLink from "next/link";
+import { fetchData } from "../../components/fetchData";
 import { Quote } from "../api/quotes";
 
 function Card({ post }: { post: Quote }) {
@@ -43,9 +44,11 @@ export async function getStaticProps({ params }: { params: { id: number } }) {
 
 export async function getStaticPaths() {
   const posts = await fetchData();
-  const paths = posts.map((post: Quote) => ({
+  let paths = posts.map((post: Quote) => ({
     params: { id: String(post.id) },
   }));
+
+  paths = paths.slice(0, 1300);
 
   // We'll pre-render only these paths at build time.
   // { fallback: blocking } will server-render pages
@@ -53,22 +56,4 @@ export async function getStaticPaths() {
   return { paths, fallback: "blocking" };
 }
 
-const fetchData = async () => {
-  let datas: Quote[] = await fetch("https://type.fit/api/quotes")
-    .then((res) => res.json())
-    .then((data) => data)
-    .catch((err) => console.log(err));
-
-  let id = 0;
-  const indexedData = datas!.map((data) => {
-    id = id + 1;
-    return {
-      id: id,
-      text: data.text,
-      author: data.author,
-    };
-  });
-
-  return indexedData;
-};
 export default Card;

@@ -1,5 +1,7 @@
 import { Quote } from "./api/quotes";
-import NextLink from 'next/link'
+import { fetchData } from "../components/fetchData";
+
+import NextLink from "next/link";
 function Blog({ posts }: { posts: Quote[] }) {
   return (
     <div className="flex flex-col items-center justify-center py-10">
@@ -13,12 +15,12 @@ function Blog({ posts }: { posts: Quote[] }) {
         </thead>
         <tbody>
           {posts.map((post: Quote) => (
-            <NextLink href={`/quotes/${post.id - 1 }`} key={post.id}>
-            <tr className="cursor-pointer">
-              <th>{post.id}</th>
-              <td className="whitespace-pre-wrap">{post.text}</td>
-              <td>{post.author}</td>
-            </tr>
+            <NextLink href={`/quotes/${post.id - 1}`} key={post.id}>
+              <tr className="cursor-pointer">
+                <th>{post.id}</th>
+                <td className="whitespace-pre-wrap">{post.text}</td>
+                <td>{post.author}</td>
+              </tr>
             </NextLink>
           ))}
         </tbody>
@@ -31,8 +33,7 @@ function Blog({ posts }: { posts: Quote[] }) {
 // It may be called again, on a serverless function, if
 // revalidation is enabled and a new request comes in
 export async function getStaticProps() {
-  const res = await fetch("http://localhost:3000/api/quotes");
-  const posts = await res.json();
+  const posts = await fetchData();
 
   return {
     props: {
@@ -49,8 +50,7 @@ export async function getStaticProps() {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 async function getStaticPaths() {
-  const res = await fetch("http://localhost:3000/api/quotes");
-  const posts: Quote[] = await res.json();
+  const posts: Quote[] = await fetchData();
 
   // Get the paths we want to pre-render based on posts
   const paths = posts.map((post) => ({

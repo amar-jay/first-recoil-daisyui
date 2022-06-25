@@ -7,7 +7,7 @@ const ImageComponent: React.FC<{
 }> = ({ src, className, ...props }) => {
   return (
     <div className={`relative ${className}`}>
-      <Image src={src} {...props} layout="fill" />
+      <Image src={src} {...props} layout="fill" alt="oo" />
     </div>
   );
 };
